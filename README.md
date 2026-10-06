@@ -59,8 +59,9 @@ O objetivo é colocar em prática conhecimentos de Python, desenvolvimento web, 
 ![Horários disponíveis](imagens/horarios+clima.png)
 
 ### 📅 Reserva de horário + confirmação
-![Reserva de horário](imagens/confirmacao.png)
 ![Confirmação reserva](imagens/confirmar_cadastro.png)
+![Reserva de horário](imagens/confirmacao.png)
+
 
 
 **Cristian Dalnei Maciel Lima**
