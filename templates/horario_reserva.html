@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro de Horário</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        main {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+        }
+
+        .icone {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #0b1f17;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .botao {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #1c5c3e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .botao:hover {
+            background: #267b52;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+<main>
+
+    <section class="card">
+
+        {% if horario.cadastrado == True %}
+
+            <div class="icone">⚽</div>
+
+            <h1>Horário cadastrado!</h1>
+
+            <p>
+                O horário foi cadastrado com sucesso.
+            </p>
+
+        {% else %}
+
+            <div class="icone">❌</div>
+
+            <h1>Não foi possível cadastrar</h1>
+
+            <p>
+                Ocorreu um problema ao cadastrar o horário.
+            </p>
+
+        {% endif %}
+
+        <a href="/menu" class="botao">
+            Voltar para o menu
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+</html>

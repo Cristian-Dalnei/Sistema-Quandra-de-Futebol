@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Futebol</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(5, 30, 20, 0.88),
+                    rgba(5, 30, 20, 0.92)
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #222;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+
+            padding: 20px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .login-card {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            background: #0b1f17;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        h1 {
+            color: #0b1f17;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           FORMULÁRIO
+        ========================= */
+
+        form {
+            text-align: left;
+        }
+
+
+        /* =========================
+           LABEL
+        ========================= */
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #333;
+        }
+
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1c5c3e;
+
+            box-shadow:
+                0 0 0 3px rgba(28, 92, 62, 0.12);
+        }
+
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        button {
+            width: 100%;
+
+            padding: 14px;
+
+            background: #0b1f17;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1c5c3e;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* =========================
+           RODAPÉ DO CARD
+        ========================= */
+
+        .voltar {
+            display: block;
+
+            margin-top: 25px;
+
+            color: #1c5c3e;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .login-card {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+                ⚽
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <h1>Bem-vindo!</h1>
+
+            <p class="subtitulo">
+                Entre para acessar o sistema da quadra
+            </p>
+
+
+            <!-- FORMULÁRIO -->
+
+            <form action="/login" method="POST">
+
+
+                <!-- EMAIL -->
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+
+                <!-- SENHA -->
+
+                <label for="senha">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+
+                <!-- BOTÃO -->
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+
+            </form>
+
+
+            <!-- VOLTAR -->
+
+            <a href="/cadastro" class="voltar">
+                Cadastrar
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

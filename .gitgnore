@@ -1,0 +1,9 @@
+ProjetoQuadra/
+│
+├── app.py
+├── banco.py
+├── Classes.py
+├── tempo.py
+├── templates/
+├── venv/
+└── .gitignore

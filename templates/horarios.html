@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Horários - Futebol</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #222;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            width: 100%;
+            background: #0b1f17;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-bola {
+            width: 42px;
+            height: 42px;
+
+            background: white;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            list-style: none;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu li a {
+            display: block;
+
+            color: #ffffff;
+            text-decoration: none;
+
+            padding: 12px 16px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        /* =========================
+           HOVER
+        ========================= */
+
+        .menu li a:hover {
+            background: #1c5c3e;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           BOTÃO ALTERAR HORÁRIOS
+        ========================= */
+
+        .menu .alterar a {
+            background: #1c5c3e;
+            border: 1px solid #3b9b6b;
+        }
+
+        .menu .alterar a:hover {
+            background: #267b52;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+
+            min-height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 25px;
+        }
+
+
+        /* CONTEÚDO */
+
+        main {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .titulo {
+            margin-bottom: 30px;
+        }
+
+        .titulo h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .titulo p {
+            color: #666;
+        }
+
+        /* COLUNAS */
+
+        .dias { display: grid;
+            grid-template-columns: repeat(5, minmax(180px, 1fr));
+            gap: 15px; align-items: start;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .coluna-dia {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 180px;
+        }
+
+        .coluna-dia h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        /* CLIMA DO DIA */
+
+        .clima {
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.08);
+        }
+
+        .clima-temperatura {
+                      font-size: 15px;
+                      font-weight: bold;
+                      margin-bottom: 5px;
+                  }
+
+        .clima-condicao {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* CARD */
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            text-align: center;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.08);
+        }
+
+        .hora {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .disponivel {
+            border-left: 4px solid #20a464;
+        }
+
+        .disponivel .status {
+            color: #20a464;
+        }
+
+        .reservado {
+            border-left: 4px solid #d9534f;
+        }
+
+        .reservado .status {
+            color: #d9534f;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 7px 12px;
+            background-color: #20a464;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .botao:hover {
+            opacity: 0.85;
+        }
+
+        @media (max-width: 1000px) {
+            .dias {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .dias {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .dias {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar">
+
+            <!-- LOGO -->
+
+            <a href="/" class="logo">
+
+                <span class="logo-bola">⚽</span>
+
+                <span>Futebol</span>
+
+            </a>
+
+
+            <!-- MENU -->
+
+            <ul class="menu">
+
+                <li>
+                    <a href="/menu">Início</a>
+                </li>
+
+                <li>
+                    <a href="/horarios">Horários</a>
+                </li>
+
+                <li>
+                    <a href="/contato">Contato</a>
+                </li>
+
+                <li>
+                    <a href="/sobre">Sobre nós</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <div class="titulo">
+            <h2>Horários da Quadra</h2>
+            <p>Escolha um horário disponível para jogar.</p>
+        </div>
+
+
+        <div class="dias">
+
+
+            <!-- SEGUNDA -->
+            {% if horario_1 %}
+            <div class="coluna-dia">
+                    <h3>{{ horario_1[1].dia_semana }}</h3>
+                    <div class="clima">
+                        <div class="clima-temperatura">
+        🌡️                  {{ tempo[0].temp_min }}°C - {{ tempo[0].temp_max }}°C
+                        </div>
+
+                        <div class="clima-condicao">
+        ☁️                  {{ tempo[0].codi_tempo }}
+                        </div>
+                    </div>
+
+                    {% for horario in horario_1 %}
+
+                        {% if horario.reservado == True %}
+
+                            <div class="card reservado">
+
+                                <div class="hora">
+                                    {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                                </div>
+
+                                <div class="status">
+                                    Reservado
+                                </div>
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="card disponivel">
+
+                                <div class="hora">
+                                    {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                                </div>
+
+                                <div class="status">
+                                    Disponível
+                                </div>
+
+                                <a href="/cadastra_horario/{{ horario.id_horario }}" class="botao">
+                                    Reservar
+                                </a>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- TERÇA -->
+            {% if horario_2 %}
+            <div class="coluna-dia">
+
+                    <h3>{{ horario_2[1].dia_semana }}</h3>
+                    <div class="clima">
+                        <div class="clima-temperatura">
+        🌡️                  {{ tempo[1].temp_min }}°C - {{ tempo[1].temp_max }}°C
+                        </div>
+
+                        <div class="clima-condicao">
+        ☁️                  {{ tempo[1].codi_tempo }}
+                        </div>
+                    </div>
+                    {% for horario in horario_2 %}
+
+                        <div class="card {% if horario.reservado %}reservado{% else %}disponivel{% endif %}">
+
+                            <div class="hora">
+                                {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                            </div>
+
+                            <div class="status">
+                                {% if horario.reservado == True%}
+                                    Reservado
+                                {% else %}
+                                    Disponível
+                                {% endif %}
+                            </div>
+
+                            {% if not horario.reservado %}
+                                <a href="/cadastra_horario/{{ horario.id_horario }}" class="botao">Reservar</a>
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- QUARTA -->
+            {% if horario_3 %}
+            <div class="coluna-dia">
+                    <h3>{{ horario_3[1].dia_semana }}</h3>
+                    <div class="clima">
+                        <div class="clima-temperatura">
+        🌡️                  {{ tempo[2].temp_min }}°C - {{ tempo[2].temp_max }}°C
+                        </div>
+
+                        <div class="clima-condicao">
+        ☁️                  {{ tempo[2].codi_tempo }}
+                        </div>
+                    </div>
+                    {% for horario in horario_3 %}
+
+                        <div class="card {% if horario.reservado %}reservado{% else %}disponivel{% endif %}">
+
+                            <div class="hora">
+                                {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                            </div>
+
+                            <div class="status">
+                                {% if horario.reservado %}
+                                    Reservado
+                                {% else %}
+                                    Disponível
+                                {% endif %}
+                            </div>
+
+                            {% if not horario.reservado %}
+                                <a href="/cadastra_horario/{{ horario.id_horario }}" class="botao">Reservar</a>
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- QUINTA -->
+            {% if horario_4 %}
+            <div class="coluna-dia">
+
+                    <h3>{{ horario_4[1].dia_semana }}</h3>
+                    <div class="clima">
+                        <div class="clima-temperatura">
+        🌡️                  {{ tempo[3].temp_min }}°C - {{ tempo[3].temp_max }}°C
+                        </div>
+
+                        <div class="clima-condicao">
+        ☁️                  {{ tempo[3].codi_tempo }}
+                        </div>
+                    </div>
+                    {% for horario in horario_4 %}
+
+                        <div class="card {% if horario.reservado %}reservado{% else %}disponivel{% endif %}">
+
+                            <div class="hora">
+                                {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                            </div>
+
+                            <div class="status">
+                                {% if horario.reservado %}
+                                    Reservado
+                                {% else %}
+                                    Disponível
+                                {% endif %}
+                            </div>
+
+                            {% if not horario.reservado %}
+                                <a href="/cadastra_horario/{{ horario.id_horario }}" class="botao">Reservar</a>
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+
+            </div>
+            {% endif %}
+
+            <!-- SEXTA -->
+            {% if horario_5 %}
+
+            <div class="coluna-dia">
+
+
+                    <h3>{{ horario_5[1].dia_semana }}</h3>
+                    <div class="clima">
+                        <div class="clima-temperatura">
+        🌡️                  {{ tempo[4].temp_min }}°C - {{ tempo[4].temp_max }}°C
+                        </div>
+
+                        <div class="clima-condicao">
+        ☁️                  {{ tempo[4].codi_tempo }}
+                        </div>
+                    </div>
+                    {% for horario in horario_5 %}
+
+                        <div class="card {% if horario.reservado %}reservado{% else %}disponivel{% endif %}">
+
+                            <div class="hora">
+                                {{ "%02d"|format(horario.data_hora.hour) }}:{{ "%02d"|format(horario.data_hora.minute) }}
+                            </div>
+
+                            <div class="status">
+                                {% if horario.reservado %}
+                                    Reservado
+                                {% else %}
+                                    Disponível
+                                {% endif %}
+                            </div>
+
+                            {% if not horario.reservado %}
+                                <a href="/cadastra_horario/{{ horario.id_horario }}" class="botao">Reservar</a>
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+
+
+
+            </div>
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

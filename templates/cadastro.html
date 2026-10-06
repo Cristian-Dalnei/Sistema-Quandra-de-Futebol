@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro - Futebol</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    rgba(5, 30, 20, 0.88),
+                    rgba(5, 30, 20, 0.92)
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #222;
+
+            padding: 30px 15px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .cadastro-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .cadastro-card {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .cabecalho {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 15px;
+
+            background: #0b1f17;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* =========================
+           TÍTULO
+        ========================= */
+
+        h1 {
+            color: #0b1f17;
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FORMULÁRIO
+        ========================= */
+
+        form {
+            width: 100%;
+        }
+
+
+        /* =========================
+           GRUPO DE CAMPOS
+        ========================= */
+
+        .grupo {
+            margin-bottom: 18px;
+        }
+
+
+        /* =========================
+           DUAS COLUNAS
+        ========================= */
+
+        .linha {
+            display: flex;
+
+            gap: 15px;
+        }
+
+        .linha .grupo {
+            flex: 1;
+        }
+
+
+        /* =========================
+           LABEL
+        ========================= */
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #333;
+        }
+
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1c5c3e;
+
+            box-shadow:
+                0 0 0 3px rgba(28, 92, 62, 0.12);
+        }
+
+
+        /* =========================
+           DATA DE NASCIMENTO
+        ========================= */
+
+        .data-nascimento {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .data-nascimento input {
+            text-align: center;
+        }
+
+        .dia {
+            flex: 1;
+        }
+
+        .mes {
+            flex: 1;
+        }
+
+        .ano {
+            flex: 1.5;
+        }
+
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        button {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 8px;
+
+            background: #0b1f17;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1c5c3e;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* =========================
+           LINK LOGIN
+        ========================= */
+
+        .login {
+            text-align: center;
+
+            margin-top: 25px;
+
+            font-size: 14px;
+
+            color: #777;
+        }
+
+        .login a {
+            color: #1c5c3e;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .cadastro-card {
+                padding: 30px 25px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .linha {
+                flex-direction: column;
+
+                gap: 0;
+            }
+
+            .data-nascimento {
+                gap: 7px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="cadastro-container">
+
+        <div class="cadastro-card">
+
+
+            <!-- CABEÇALHO -->
+
+            <div class="cabecalho">
+
+                <div class="logo">
+                    ⚽
+                </div>
+
+                <h1>Criar sua conta</h1>
+
+                <p class="subtitulo">
+                    Cadastre-se para acessar o sistema da quadra
+                </p>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <form action="/cadastro" method="POST">
+
+
+                <!-- NOME E SOBRENOME -->
+
+                <div class="linha">
+
+                    <div class="grupo">
+
+                        <label for="nome">
+                            Nome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Digite seu nome"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="grupo">
+
+                        <label for="sobrenome">
+                            Sobrenome
+                        </label>
+
+                        <input
+                            type="text"
+                            id="sobrenome"
+                            name="sobrenome"
+                            placeholder="Digite seu sobrenome"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="grupo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="grupo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATA DE NASCIMENTO -->
+
+                <div class="grupo">
+
+                    <label>
+                        Data de nascimento
+                    </label>
+
+                    <div class="data-nascimento">
+
+                        <input
+                            type="number"
+                            class="dia"
+                            name="dia"
+                            placeholder="Dia"
+                            min="1"
+                            max="31"
+                            required
+                        >
+
+                        <input
+                            type="number"
+                            class="mes"
+                            name="mes"
+                            placeholder="Mês"
+                            min="1"
+                            max="12"
+                            required
+                        >
+
+                        <input
+                            type="number"
+                            class="ano"
+                            name="ano"
+                            placeholder="Ano"
+                            min="1900"
+                            max="2026"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button type="submit">
+                    Criar cadastro
+                </button>
+
+
+            </form>
+
+
+            <!-- LINK PARA LOGIN -->
+
+            <div class="login">
+
+                Já possui uma conta?
+
+                <a href="/">
+                    Fazer login
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+

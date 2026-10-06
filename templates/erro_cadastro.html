@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Erro no Cadastro</title>
+
+    <style>
+
+        /* RESET */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* PÁGINA */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #071f14, #0d3b25);
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+        }
+
+        /* CARD */
+
+        .card-erro {
+            width: 90%;
+            max-width: 450px;
+
+            background: #ffffff;
+            color: #222;
+
+            padding: 40px 30px;
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ÍCONE */
+
+        .icone {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #dc3545;
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        /* TÍTULO */
+
+        h1 {
+            margin-bottom: 15px;
+            color: #dc3545;
+        }
+
+        /* MENSAGEM */
+
+        .mensagem {
+            font-size: 16px;
+            line-height: 1.5;
+
+            margin-bottom: 30px;
+
+            color: #555;
+        }
+
+        /* BOTÃO */
+
+        .botao {
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            background: #0d6b3d;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #09532f;
+            transform: translateY(-2px);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card-erro">
+
+        <div class="icone">
+            !
+        </div>
+
+        <h1>Erro no cadastro</h1>
+
+        <div class="mensagem">
+            {{ erro }}
+        </div>
+
+        <a href="/cadastro" class="botao">
+            Voltar para o cadastro
+        </a>
+
+    </div>
+
+</body>
+
+</html>
