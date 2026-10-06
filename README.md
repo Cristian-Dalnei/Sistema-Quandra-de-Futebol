@@ -43,7 +43,7 @@ Este projeto foi desenvolvido durante meus estudos em Análise e Desenvolvimento
 O objetivo é colocar em prática conhecimentos de Python, desenvolvimento web, banco de dados, SQL e integração com APIs.
 
 ## 👨‍💻 Autor
-
+**Cristian Dalnei Maciel Lima**
 ## 📸 Demonstração
 
 ### 🔐 Tela de Login + cadastro
@@ -61,9 +61,3 @@ O objetivo é colocar em prática conhecimentos de Python, desenvolvimento web, 
 ### 📅 Reserva de horário + confirmação
 ![Confirmação reserva](imagens/confirmar_cadastro.png)
 ![Reserva de horário](imagens/confirmacao.png)
-
-
-
-**Cristian Dalnei Maciel Lima**
-
-Estudante de Análise e Desenvolvimento de Sistemas.
