@@ -10,7 +10,7 @@ class Banco:
             host="localhost",
             database="arenafutebol",
             user="postgres",
-            password="zmaddoxxbr18",
+            password="SUA-SENHA-AQUI",
             port="5432"
         )
         return conn
